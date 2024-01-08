@@ -44,6 +44,10 @@ const userSchema = new mongoose.Schema({
         "Password must be at least 8 characters long and contain at least one letter and one number.",
     },
   },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
   Token: [
     {
       token: {
@@ -54,11 +58,29 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
+userSchema.methods.generateAuthTocken = async () => {
+  return await jwt.sign(
+    {
+      userid: this._id,
+      userAdmin: this.isAdmin,
+      email: this.email,
+    },
+    process.env.secretKey,
+    {
+      expiresIn: "30d",
+    }
+  );
+};
 
-
-
+userSchema.pre("save", async function (next) {
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 10);
+    this.confirmpassword = undefined;
+  }
+  next();
+});
 
 //create new collection
-const Student = new mongoose.model("Student", studentSchema);
+const user = new mongoose.model("user", userSchema);
 
-
+module.exports = user;
