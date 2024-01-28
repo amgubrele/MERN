@@ -1,0 +1,45 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2%;
+  height: 60px; /* Adjust the height for larger screens */
+}
+
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 10px; /* Increase the gap between items */
+  padding: 1%;
+}
+
+.navbar a,
+.navbar ul a {
+  text-decoration: none;
+  color: blueviolet;
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Align logo vertically in the middle */
+}
+
+.logo img {
+  max-width: 100%; /* Make the logo responsive */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically for small screens */
+    text-align: center; /* Center-align text */
+  }
+
+  .navbar ul {
+    width: 100%; /* Full width for small screens */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center-align items */
+  }
+}

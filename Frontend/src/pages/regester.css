@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+  }
+  
+  .main {
+    border: solid 3px red;
+    width: 100vw; /* 100% of the viewport width */
+    height: 100vh; /* 100% of the viewport height */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .main {
+      width: 90vw; /* Adjust the width for smaller screens */
+      height: 90vh; /* Adjust the height for smaller screens */
+    }
+  }
+  
